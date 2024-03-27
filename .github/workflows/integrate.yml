@@ -13,6 +13,8 @@ jobs:
       - uses: actions/setup-node@v1 # run node commands
         with:
           node-version: 20.5.1
+      - name: Set NODE_OPTIONS
+        run: echo "NODE_OPTIONS=--openssl-legacy-provider" >> $GITHUB_ENV
       - run: npm ci --verbose # equivalent to npm install, but it does a clean install for your CI server.
       - run: npm test
       - run: npm run build
