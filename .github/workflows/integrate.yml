@@ -1,18 +1,18 @@
 name: Node Continuous Integration
 
-on:
+on: 
   pull_request:
     branches: [ master ]
 
 
 jobs:
-  test_pull_request:
-    runs-on: ubuntu-latest
+  test_pull_request: # job's name
+    runs-on: ubuntu-latest # which VM to run on
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v2 # get source code into the current working directory of the VM
+      - uses: actions/setup-node@v1 # run node commands
         with:
           node-version: 12
-      - run: npm ci
+      - run: npm ci # equivalent to npm install, but it does a clean install for your CI server.
       - run: npm test
       - run: npm run build
