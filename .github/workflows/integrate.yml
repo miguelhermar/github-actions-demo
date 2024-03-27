@@ -12,7 +12,11 @@ jobs:
       - uses: actions/checkout@v2 # get source code into the current working directory of the VM
       - uses: actions/setup-node@v1 # run node commands
         with:
-          node-version: 12
+          node-version: 20.5.1
       - run: npm ci # equivalent to npm install, but it does a clean install for your CI server.
-      - run: npm test
-      - run: npm run build
+      - name: Build project
+        env:
+          NODE_OPTIONS: --openssl-legacy-provider
+        run: npm run build
+      - name: Test project
+        run: npm test
